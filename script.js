@@ -1,5 +1,9 @@
 const list = document.getElementById("list");
+const undoContainer = document.getElementById("undoContainer");
 let currentFilter = "all";
+
+let lastDeleted = null;
+let undoTimeout = null;
 
 /* Загрузка и отображение */
 function loadItems() {
@@ -47,12 +51,38 @@ function addItem() {
     loadItems();
 }
 
-/* Удаление */
+/* Удаление с возможностью отмены */
 function deleteItem(index) {
     const items = JSON.parse(localStorage.getItem("watchlist")) || [];
+    lastDeleted = { item: items[index], index: index };
     items.splice(index, 1);
     localStorage.setItem("watchlist", JSON.stringify(items));
     loadItems();
+
+    // показать кнопку Undo
+    undoContainer.style.display = "block";
+
+    // убрать кнопку через 5 секунд
+    if (undoTimeout) clearTimeout(undoTimeout);
+    undoTimeout = setTimeout(() => {
+        undoContainer.style.display = "none";
+        lastDeleted = null;
+    }, 5000);
+}
+
+/* Отмена удаления */
+function undoDelete() {
+    if (!lastDeleted) return;
+
+    const items = JSON.parse(localStorage.getItem("watchlist")) || [];
+    items.splice(lastDeleted.index, 0, lastDeleted.item);
+    localStorage.setItem("watchlist", JSON.stringify(items));
+    loadItems();
+
+    // скрываем кнопку и очищаем таймер
+    undoContainer.style.display = "none";
+    lastDeleted = null;
+    if (undoTimeout) clearTimeout(undoTimeout);
 }
 
 /* Сортировка */
@@ -60,9 +90,7 @@ function sortByRating(order) {
     const items = JSON.parse(localStorage.getItem("watchlist")) || [];
 
     items.sort((a, b) => {
-        return order === "asc"
-            ? a.rating - b.rating
-            : b.rating - a.rating;
+        return order === "asc" ? a.rating - b.rating : b.rating - a.rating;
     });
 
     localStorage.setItem("watchlist", JSON.stringify(items));
@@ -75,5 +103,5 @@ function filterCategory(category) {
     loadItems();
 }
 
-/* Запуск при открытии */
+/* При открытии */
 loadItems();
