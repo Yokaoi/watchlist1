@@ -1,46 +1,47 @@
-body {
-    font-family: Arial, sans-serif;
-    background: #121212;
-    color: white;
-    text-align: center;
+тело body 
+    семейство шрифтов: Ариал, без засечек;
+ фон: #121212;
+ цвет: белый;
+ выравнивание текста: центр;
 }
 
-h1 {
-    margin-top: 20px;
+ч1 {
+    край-верх: 20пх;
 }
 
-.form, .sort, .filter {
-    margin-bottom: 15px;
+. . .форма, .сортировка, .фильтр {
+    маржа-дно: 15пх;
 }
 
-input, select, button {
-    padding: 10px;
-    margin: 5px;
-    font-size: 16px;
+ввод, выбор, кнопка {
+    прокладка: 10пх;
+    маржа: 5пх;
+ размер шрифта: 16пх;
 }
 
-button {
-    cursor: pointer;
+кнопка {
+    курсор: указатель;
 }
 
-ul {
-    list-style: none;
-    padding: 0;
+уль {
+    список-стиль: никто;
+    прокладка: 0;
 }
 
-li {
-    background: #1f1f1f;
-    margin: 10px auto;
-    padding: 10px;
-    width: 350px;
-    border-radius: 5px;
+ли {
+    фон: #1f1f1f;
+    маржа: 10пх авто;
+    прокладка: 10пх;
+    ширина: 350пх;
+ радиус границы: 5пх;
 }
 
-.delete-btn {
-    background: red;
-    border: none;
-    color: white;
-    padding: 5px 10px;
-    margin-top: 8px;
-    cursor: pointer;
+. . . .удалить-btn {
+    фон: green;
+    граница: никто;
+    цвет: белый;
+    прокладка: 5пх 10пх;
+    край-верх: 8пх;
+    курсор: указатель;
 }
+
