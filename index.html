@@ -12,7 +12,7 @@
 <!-- Форма добавления -->
 <div class="form">
     <input type="text" id="title" placeholder="Название">
-    
+
     <select id="category">
         <option value="Фильм">Фильм</option>
         <option value="Аниме">Аниме</option>
@@ -47,9 +47,11 @@
 <!-- Список -->
 <ul id="list"></ul>
 
+<!-- Отмена удаления -->
+<div id="undoContainer" style="display:none;">
+    <button id="undoBtn" onclick="undoDelete()">↩️ Отменить удаление</button>
+</div>
+
 <script src="script.js"></script>
 </body>
 </html>
-
-
-
